@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #e0f2f1;
+  --color-brand-100: #b2dfdb;
+  --color-brand-200: #80cbc4;
+  --color-brand-300: #4db6ac;
+  --color-brand-400: #26a69a;
+  --color-brand-500: #26a69a;
+  --color-brand-600: #00897b;
+  --color-brand-700: #00796b;
+  --color-brand-800: #00695c;
+  --color-brand-900: #004d40;
+
+  --color-dark-900: #0a0a0a;
+  --color-dark-800: #141414;
+  --color-dark-700: #1a1a1a;
+  --color-dark-600: #262626;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark-900 text-gray-100 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  ::selection {
+    @apply bg-brand-500/30 text-white;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply text-brand-400;
+  }
+
+  .glass {
+    @apply bg-dark-800/80 backdrop-blur-sm;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg
+           bg-brand-500 hover:bg-brand-400 text-white font-medium
+           transition-colors duration-200;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg
+           border border-white/20 hover:border-brand-400 text-white
+           font-medium transition-colors duration-200 hover:bg-brand-500/10;
+  }
+
+  .section-padding {
+    @apply px-6 sm:px-8 lg:px-12 xl:px-16;
+  }
+
+  .card {
+    @apply p-6 rounded-xl bg-dark-800 border border-white/10
+           hover:border-brand-500/30 transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ── Animaciones sutiles ────────────────────────────── */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes pulseSoft {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
+@keyframes revealLine {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Clases de animación ────────────────────────────── */
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  opacity: 0;
+  animation: slideInLeft 0.65s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  opacity: 0;
+  animation: slideInRight 0.65s ease-out forwards;
+}
+
+.animate-scale-in {
+  opacity: 0;
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-pulse-soft {
+  animation: pulseSoft 2.5s ease-in-out infinite;
+}
+
+.animate-scroll-bounce {
+  animation: scrollBounce 1.6s ease-in-out infinite;
+}
+
+/* ── Delays ─────────────────────────────────────────── */
+.delay-0   { animation-delay: 0s; }
+.delay-100 { animation-delay: 0.1s; }
+.delay-150 { animation-delay: 0.15s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+
+/* ── Hover lift sutil ───────────────────────────────── */
+.hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Línea decorativa animada ───────────────────────── */
+.reveal-line {
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, #26a69a, #4db6ac);
+  transform-origin: left center;
+  transform: scaleX(0);
+  border-radius: 999px;
+}
+.reveal-line.is-visible {
+  animation: revealLine 0.7s ease-out forwards;
+}
+
+/* ── Nav underline deslizante ───────────────────────── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #26a69a;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.25s ease;
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* ── Shimmer en badges ──────────────────────────────── */
+.badge-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(38,166,154,0.08) 0%,
+    rgba(77,182,172,0.18) 50%,
+    rgba(38,166,154,0.08) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
