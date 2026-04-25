@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { CartProvider } from './context/CartContext'
 import { AuthProvider } from './context/AuthContext'
@@ -13,6 +14,10 @@ function AppInner() {
 
   return (
     <div className="min-h-screen bg-dark-900">
+        <Helmet>
+          <title>La Bicicletería</title>
+          <meta name="description" content="Tienda online de bicicletas y accesorios." />
+        </Helmet>
       <Navigation onOpenAuth={() => setIsAuthOpen(true)} />
       <Routes>
         <Route path="/" element={<HomePage />} />
